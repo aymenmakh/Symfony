@@ -1,0 +1,115 @@
+
+{% extends "@EshopUser/adminlayout.html.twig" %}
+{% block body %}
+
+
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+    </style>
+    <style>
+        html, body {
+            padding:0;
+            margin:0;
+            height:100%
+        }
+        #cache {
+            position:absolute;
+            background:rgba(0,0,0,0);
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            z-index: -1;
+            transition:background .5s
+        }
+        #cache:target {
+            background:rgba(0,0,0,.5);
+            z-index: 1;
+        }
+        .popup {
+            position:absolute;
+            z-index: 1000;
+            display:none;
+            top:150px;
+            left:500px;
+            right:500px;
+        }
+        .popup a {
+            position:absolute;
+            background: #333;
+            color:#fff;
+            border-radius: 50%;
+            width:20px;
+            line-height: 20px;
+            text-align: center;
+            font-family:arial;
+            right:0;
+            text-decoration: none;
+
+        }
+        #cache:target ~ .popup {
+            display:block;
+        }
+    </style>
+
+
+    <head>Liste des reclamations</head>
+
+<table border="1" rules="rows" >
+
+    <th></th>
+    <tr>
+            <th>Objet reclamation </th> <th textalign="center"> date </th> <th>etat</th>        </tr>
+        {% for reclamation in reclamation %}
+<tr>
+           <td>{{ reclamation.motif }}</td><td>{{ reclamation.date|date('Y-m-d') }}</td>
+    {% if reclamation.etat == "Traité" %}
+        <td align=center><img align="center" src="{{ asset('images/products/' ~ "500_F_58958896_MMwhC2perwpBfmr7XuVLga4l2q72UMJg.jpg" ) }}" width="26" height="20" style="float:right"   alt="..." textalign="center">
+        <td><a href="{{ path('eshop_reclamation_supp', { 'id': reclamation.id }) }}">Supprimer</a></td>
+
+        </td>
+    {% endif %}
+
+    {% if reclamation.etat != "Traité" %}
+    <td align=center><img align="center" src="{{ asset('images/products/' ~ "cancel-146131_960_720.jpg" ) }}" width="26" height="20" style="float:right"   alt="..." textalign="center">
+       {% endif %}
+    {% if reclamation.etat!="Traité" %}
+        <td><a href="{{ path('eshop_admin_Traitementreclamation', {'motif': reclamation.motif }) }}">Traiter reclamation </a></td>
+
+    {% endif %}
+
+
+</tr>
+
+        {% endfor %}
+
+    </table>
+    <div class="navigation text-center">
+        {{ knp_pagination_render(reclamation) }}
+    </div>
+   Le nombre de reclamations non traitées :
+    <div class="navigation text-center" style="width:75px;height:75px;border:22px solid #999999;
+background: url(images/monimage.gif) no-repeat;"> {{ count }} </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+

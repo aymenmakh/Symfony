@@ -1,0 +1,112 @@
+{% extends('@EshopUser/adminlayout.html.twig') %}
+{% block body %}
+<h1 align="center">Liste des deals</h1>
+    <br>
+
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 80%;
+                margin: auto;
+
+            }
+
+            th, td {
+                text-align: center;
+                padding: 8px;
+            }
+
+            tr:nth-child(even){background-color: #f2f2f2}
+        </style>
+        <style>
+            html, body {
+                padding:0;
+                margin:0;
+                height:100%
+            }
+            #cache {
+                position:absolute;
+                background:rgba(0,0,0,0);
+                top:0;
+                right:0;
+                bottom:0;
+                left:0;
+                z-index: -1;
+                transition:background .5s
+            }
+            #cache:target {
+                background:rgba(0,0,0,.5);
+                z-index: 1;
+            }
+            .popup {
+                position:absolute;
+                z-index: 1000;
+                display:none;
+                top:150px;
+                left:500px;
+                right:500px;
+            }
+            .popup a {
+                position:absolute;
+                background: #333;
+                color:#fff;
+                border-radius: 50%;
+                width:20px;
+                line-height: 20px;
+                text-align: center;
+                font-family:arial;
+                right:0;
+                text-decoration: none;
+
+            }
+            #cache:target ~ .popup {
+                display:block;
+            }
+        </style>
+    </head>
+    <body>
+
+
+
+    <table border="0" align="center" rules="rows" bgcolor="#f8f8ff "  >
+
+        <th>Id</th>
+        <th>Titre du Deal</th>
+        <th>Déposé par</th>
+        <th>Date d'emition</th>
+        <th>Date d'expiration</th>
+        <th>Photo du Deal</th>
+        <th>Description du Deal</th>
+        <th>Supprimer</th>
+
+
+
+
+
+        </tr>
+        {% for deal in deals %}
+            <tr>
+                <td width="50" >{{ deal.id }} </td>
+                <td width="400" >{{  deal.titre }} </td>
+                <td width="200">{{ deal.idEntreprise.nom }}</td>
+                <td width="200">{{ deal.dateemition|date('Y-m-d') }}</td>
+                <td width="200">{{ deal.dateExpiration|date('Y-m-d') }}</td>
+                <td width="200" >   <div id="cache"></div>
+                    <a href="#cache"><img src="{{ asset('images/products/' ~ deal.imageName) }}" width="80" height="40"></a>
+                    <div class="popup"><img src="{{ asset('images/products/' ~ deal.imageName) }}" width="320" height="160"><a href="#">X</a></div></td>
+                <td width="400" >{{ deal.description|length > 100 ? deal.description|slice(0, 100) ~ '...' : deal.description }} </td>
+                <td width="200"><a href="{{ path('eshop_user_supprimerdeal',{'id':deal.id}) }}"><img src="{{ asset('Template/assets/images/delete_icon.png') }}" align="center"  ></a></td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+    </body>
+    </html>
+
+
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends('@EshopUser/entrepriselayoutss.html.twig') %}
+{% block c %}
+    <br><br><br><br>
+
+    <h2 align="center"> <U>Liste de tous les deals </U></h2>
+    <br>
+
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 80%;
+                margin: auto;
+
+            }
+
+            th, td {
+                text-align: center;
+                padding: 8px;
+            }
+
+            tr:nth-child(even){background-color: #f2f2f2}
+        </style>
+        <style>
+            html, body {
+                padding:0;
+                margin:0;
+                height:100%
+            }
+            #cache {
+                position:absolute;
+                background:rgba(0,0,0,0);
+                top:0;
+                right:0;
+                bottom:0;
+                left:0;
+                z-index: -1;
+                transition:background .5s
+            }
+            #cache:target {
+                background:rgba(0,0,0,.5);
+                z-index: 1;
+            }
+            .popup {
+                position:absolute;
+                z-index: 1000;
+                display:none;
+                top:150px;
+                left:500px;
+                right:500px;
+            }
+            .popup a {
+                position:absolute;
+                background: #333;
+                color:#fff;
+                border-radius: 50%;
+                width:20px;
+                line-height: 20px;
+                text-align: center;
+                font-family:arial;
+                right:0;
+                text-decoration: none;
+
+            }
+            #cache:target ~ .popup {
+                display:block;
+            }
+        </style>
+    </head>
+    <body>
+
+
+
+    <table border="1"  rules="rows" bgcolor="#f8f8ff "  >
+
+        <th height="50"><h4>Titre du Deal</h4></th>
+        <th><h4>Date d'emition</h4></th>
+        <th><h4>Date d'expiration</h4></th>
+        <th><h4>Photo Deal</h4></th>
+        <th><h4>Description du Deal</h4></th>
+        <th><h4>Déposé par</h4></th>
+
+
+
+        </tr>
+        {% for deal in deals %}
+            <tr>
+                <td><a href="{{ path('eshop_user_detail',{'id':deal.id}) }}">{{  deal.titre }}</a> </td>
+                <td>{{ deal.dateemition|date('Y-m-d') }}</td>
+                <td>{{ deal.dateExpiration|date('Y-m-d') }}</td>
+                <td>   <div id="cache"></div>
+                    <a href="#cache"><img src="{{ asset('images/products/' ~ deal.imageName) }}" width="160" height="80"></a>
+                    <div class="popup"><img src="{{ asset('images/products/' ~ deal.imageName) }}" width="320" height="160"><a href="#">X</a></div>
+                <td>{{ deal.description|length > 100 ? deal.description|slice(0, 100) ~ '...' : deal.description }}  </td>
+                <td>{{ deal.idEntreprise.nom }}</td>
+
+
+            </tr>
+        {% endfor %}
+    </table>
+    <br><br><br><br>
+
+    </body>
+    </html>
+
+
+{% endblock %}

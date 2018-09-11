@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{{ asset('js/script.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/lib/bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/lib/font-awesome/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/lib/select2/css/select2.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/lib/jquery.bxslider/jquery.bxslider.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/lib/owl.carousel/owl.carousel.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/lib/jquery-ui/jquery-ui.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/css/animate.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/css/reset.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('Template/assets/css/responsive.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+
+
+
+
+    <title>Shopi</title>
+</head>
+<body class="category-class">
+<!-- TOP BANNER -->
+<!--<div id="top-banner" class="top-banner">
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <h1>Special Offer!</h1>
+        <h2>Additional 40% OFF For Men & Women Clothings</h2>
+        <span>This offer is for online only 7PM to middnight ends in 30th July 2015</span>
+        <span class="btn-close"></span>
+    </div>
+</div>-->
+<!-- HEADER -->
+<div id="header" class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="nav-top-links">
+                <a class="first-item" href="#"><img alt="phone" src="{{ asset('Template/assets/images/phone.png') }}" />00-62-658-658</a>
+                <a href="#"><img alt="email" src="{{ asset('Template/assets/images/email.png') }}" />Contact us today!</a>
+            </div>
+            <div class="currency ">
+                <div class="dropdown">
+                    <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">USD</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Dollar</a></li>
+                        <li><a href="#">Euro</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="language ">
+                <div class="dropdown">
+                    <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                        <img alt="email" src="{{ asset('Template/assets/images/fr.jpg') }}" />French
+
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#"><img alt="email" src="{{ asset('Template/assets/images/en.jpg') }}" />English</a></li>
+                        <li><a href="#"><img alt="email" src="{{ asset('Template/assets/images/fr.jpg') }}" />French</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="support-link">
+                <a href="{{ path('esprit_profil') }}">My e-shop</a>
+            </div>
+
+            <div id="user-info-top" class="user-info pull-right">
+                {% block profile %}<div class="dropdown">
+                    <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
+                    <ul class="dropdown-menu mega_dropdown" role="menu">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="#">Compare</a></li>
+                        <li><a href="#">Wishlists</a></li>
+                    </ul>
+                </div>{% endblock profile %}
+            </div>
+        </div>
+    </div>
+    <!--/.top-header -->
+    <!-- MAIN HEADER -->
+    <div class="container main-header">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 logo">
+                <a href="#"><img alt="Kute shop - themelock.com" src="{{ asset('Template/logo.png') }}" /></a>
+            </div>
+            <div class="col-xs-7 col-sm-7 header-search-box">
+                <form class="form-inline" method="post" action=" {{  path('esprit_rech')}}">
+                    <div class="form-group form-category">
+                        <select class="select-category">
+                            <option value="2">Categories</option>
+                            {% for c in categories %}
+
+
+
+                                <option value="1">{{ c.NomCat }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group input-serach">
+                        <input type="text"  nom="nom" placeholder="Mots clés ici...">
+                    </div>
+                    <button type="submit" class="pull-right btn-search"></button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- END MANIN HEADER -->
+    <div id="nav-top-menu" class="nav-top-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3" id="box-vertical-megamenus">
+                    <div class="box-vertical-megamenus">
+                        <h4 class="title">
+                            <span class="title-menu">Categories</span>
+                            <span class="btn-open-mobile pull-right home-page"><i class="fa fa-bars"></i></span>
+                        </h4>
+                        <div class="vertical-menu-content is-home">
+                            <ul class="vertical-menu-list">
+                                {% for c in categories %}
+                                    {% if loop.index <12 %}
+                                        <li>
+                                            <a class="parent" href="#">{{ c.NomCat }}</a>
+
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            <div class="all-category"><span><a href="#ancre"> Toutes les catégories</a></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="main-menu" class="col-sm-9 main-menu">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <a class="navbar-brand" href="#">MENU</a>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="{{ path('eshop_user_accueil') }}">À la Une</a></li>
+
+                                    <li><a href="{{ path('eshop_user_afficherdealm') }}">Deals</a></li>
+
+
+                                    <li><a href="{{ path('esprit_catalogue') }}" class="dropdown-toggle" >Catalogue</a></li>
+                                    <li><a href="{{ path('eshop_membre_reclamation') }}">Reclamation </a></li>
+                                    <li><a href=" {{ path('eshop_membre_Affechange') }}">Echange </a></li>
+                                    <li><a href=" {{ path('List_sondages_Afficher_front_Office') }}">Sondage </a></li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- userinfo on top-->
+            <div id="form-search-opntop">
+            </div>
+            <!-- userinfo on top-->
+            <div id="user-info-opntop">
+            </div>
+            <!-- CART ICON ON MMENU -->
+            <div id="shopping-cart-box-ontop">
+                <i class="fa fa-shopping-cart"></i>
+                <div class="shopping-cart-box-ontop-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+<!-- Home slideder-->
+
+<!-- END Home slideder-->
+<!-- servives -->
+
+<!-- end services -->
+
+{% block c %}
+
+
+    <div id="content-wrap">
+        <div class="container">
+            <div id="hot-categories" class="row">
+                <div class="col-sm-12 group-title-box">
+                    <h2 class="group-title ">
+                        <span id="ancre">categories</span>
+                    </h2>
+                </div>
+                {% for c in categories %}
+
+
+                    <div class="col-sm-6  col-lg-3 cate-box">
+                        <div class="cate-tit" >
+                            <div class="div-1" style="width: 46%;">
+                                <div class="cate-name-wrap">
+                                    <p class="cate-name">{{ c.NomCat }}</p>
+                                </div>
+                                <a href="" class="cate-link link-active" data-ac="flipInX" ><span>Afficher</span></a>
+                            </div>
+
+
+                        </div>
+                    </div> {% endfor %}
+            </div> <!-- /#hot-categories -->
+
+        </div> <!-- /.container -->
+    </div>
+
+    <div class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-9 page-top-left">
+                    <div class="popular-tabs">
+                        <ul class="nav-tab">
+                            <li class="active"><a data-toggle="tab" href="#tab-1">Deals</a></li>
+                        </ul>
+                        <div class="tab-container">
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock c %}
+<div id="googleMap" style="width:100%;height:400px;"></div>
+
+
+<footer id="footer">
+    <div class="container">
+        <!-- introduce-box -->
+        <div id="introduce-box" class="row">
+            <div class="col-md-3">
+                <div id="address-box">
+                    <a href="#"><img src="{{ asset('Template/logo.png') }}" /></a>
+                    <div id="address-list">
+                        <div class="tit-name">Address:</div>
+                        <div class="tit-contain">Example Street 68, Mahattan, New York, USA.</div>
+                        <div class="tit-name">Phone:</div>
+                        <div class="tit-contain">+00 123 456 789</div>
+                        <div class="tit-name">Email:</div>
+                        <div class="tit-contain">support@business.com</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="introduce-title">Company</div>
+                        <ul id="introduce-company"  class="introduce-list">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">Affiliate Program</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="introduce-title">My Account</div>
+                        <ul id = "introduce-Account" class="introduce-list">
+                            <li><a href="#">My Order</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li><a href="#">My Credit Slip</a></li>
+                            <li><a href="#">My Addresses</a></li>
+                            <li><a href="#">My Personal In</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="introduce-title">Support</div>
+                        <ul id = "introduce-support"  class="introduce-list">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">Affiliate Program</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div id="contact-box">
+                    <div class="introduce-title">Newsletter</div>
+                    <div class="input-group" id="mail-box">
+                        <input type="text" placeholder="Your Email Address"/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">OK</button>
+                          </span>
+                    </div><!-- /input-group -->
+                    <div class="introduce-title">Let's Socialize</div>
+                    <div class="social-link">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fa fa-vk"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /#introduce-box -->
+        <!-- #trademark-box -->
+        <div id="trademark-box" class="row">
+            <div class="col-sm-12">
+                <ul id="trademark-list">
+                    <li id="payment-methods">Accepted Payment Methods</li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-ups.jpg') }}" /></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-qiwi.jpg') }}" /></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-wu.jpg') }}" /></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-cn.jpg') }}"/></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-visa.jpg') }}" /></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-mc.jpg') }}" /></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-ems.jpg') }}" /></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-dhl.jpg') }}" /></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-fe.jpg') }}" /></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{{ asset('Template/trademark-wm.jpg') }}" /></a>
+                    </li>
+                </ul>
+            </div>
+        </div> <!-- /#trademark-box -->
+        <!-- #trademark-text-box -->
+
+        <div id="footer-menu-box">
+            <div class="col-sm-12">
+                <ul class="footer-menu-list">
+                    <li><a href="#" >Company Info - Partnerships</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-12">
+                <ul class="footer-menu-list">
+                    <li><a href="#" >Online Shopping</a></li>
+                    <li><a href="#" >Promotions</a></li>
+                    <li><a href="#" >My Orders</a></li>
+                    <li><a href="#" >Help</a></li>
+                    <li><a href="#" >Site Map</a></li>
+                    <li><a href="#" >Customer Service</a></li>
+                    <li><a href="#" >Support</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-12">
+                <ul class="footer-menu-list">
+                    <li><a href="#" >Most Populars</a></li>
+                    <li><a href="#" >Best Sellers</a></li>
+                    <li><a href="#" >New Arrivals</a></li>
+                    <li><a href="#" >Special Products</a></li>
+                    <li><a href="#" >Manufacturers</a></li>
+                    <li><a href="#" >Our Stores</a></li>
+                    <li><a href="#" >Shipping</a></li>
+                    <li><a href="#" >Payments</a></li>
+                    <li><a href="#" >Warantee</a></li>
+                    <li><a href="#" >Refunds</a></li>
+                    <li><a href="#" >Checkout</a></li>
+                    <li><a href="#" >Discount</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-12">
+                <ul class="footer-menu-list">
+                    <li><a href="#" >Terms & Conditions</a></li>
+                    <li><a href="#" >Policy</a></li>
+                    <li><a href="#" >Shipping</a></li>
+                    <li><a href="#" >Payments</a></li>
+                    <li><a href="#" >Returns</a></li>
+                    <li><a href="#" >Refunds</a></li>
+                    <li><a href="#" >Warrantee</a></li>
+                    <li><a href="#" >FAQ</a></li>
+                    <li><a href="#" >Contact</a></li>
+                </ul>
+            </div>
+            <p class="text-center">Copyrights &#169; 2015 KuteShop. All Rights Reserved. Designed by KuteThemes.com</p>
+        </div><!-- /#footer-menu-box -->
+    </div>
+</footer>
+<script>
+    function myMap() {
+        var Lat = document.getElementById("Lat").value;
+        var Lng = document.getElementById("Lng").value;
+        var myCenter = new google.maps.LatLng(Lat,Lng);
+        var mapProp= {
+
+            center:new google.maps.LatLng(Lat,Lng),
+            zoom:5,
+        };
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        var marker = new google.maps.Marker({
+            position: myCenter,
+            animation: google.maps.Animation.BOUNCE
+
+        });
+        marker.setMap(map);
+
+
+    }
+</script>
+
+<a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+<!-- Script-->
+
+<script type="text/javascript" src="{{ asset('Template/assets/lib/jquery/jquery-1.11.2.min.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHsSt93up_J4s9YEbDRxOlhXiq2a4Q6LA&callback=myMap"></script>
+<script type="text/javascript" src="{{ asset('Template/assets/lib/bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Template/assets/lib/select2/js/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Template/assets/lib/jquery.bxslider/jquery.bxslider.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Template/assets/lib/owl.carousel/owl.carousel.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Template/assets/lib/jquery.countdown/jquery.countdown.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Template/assets/js/jquery.actual.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Template/assets/js/theme-script.js') }}"></script>
+
+</body>
+</html>

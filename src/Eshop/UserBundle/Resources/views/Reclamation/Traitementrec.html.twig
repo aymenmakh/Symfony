@@ -1,0 +1,49 @@
+
+{% extends "@EshopUser/adminlayout.html.twig" %}
+
+{% block body %}
+
+
+
+    {# src/OC/PlatformBundle/Resources/views/Advert/form.html.twig #}
+
+    <div class="well">
+
+
+        <div class="form-group">
+
+    <h1 div="center" xmlns="http://www.w3.org/1999/html">Traitement reclamation </h1>
+
+
+
+        </div>
+
+        {% for reclamation in reclamation %}
+
+        <div id="formulaire">
+            <form method="post" id="formCpt">
+                <input style="float:left;display: none;width: 0px;height:0px;margin: 0px;padding: 0px;font-size: 0px;line-height: 0px;" type="text" name="ltqaspv" id="ltqaspv" hidden="True" value="bjn4rbk">
+                <fieldset>
+
+                    <table border="2px">
+                        <tr><td>Objet Reclamation</td><td>motif</td><td>date</td><td>propriétaire</td></tr>
+                        <tr>     <td>{{ reclamation.objet }}</td><td>{{ reclamation.motif }}</td>
+                            <td>{{ reclamation.date|date('Y-m-d') }}</td>
+                            <td>{{ reclamation.idm }}</td>
+                        </tr>
+<tr>
+                        <td><a href="{{ path('eshop_reclamation_supp', { 'id': reclamation.id }) }}" class="btn btn-xs btn-danger">
+                                <i class="ace-icon fa fa-trash-o bigger-120"></i>Supprimer</a></td>
+                        <td><a href="{{ path('eshop_reclamation_update', { 'id': reclamation.id }) }}">Enregistrer</a></td>
+</tr>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+
+
+
+        {% endfor %}
+
+
+        {% endblock %}

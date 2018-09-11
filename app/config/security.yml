@@ -1,0 +1,58 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_PARCITULIER:       ROLE_USER
+        ROLE_ENTREPRISE:        ROLE_USER
+        ROLE_ADMIN:             ROLE_ADMIN
+        ROLE_SUPER_ADMIN:       ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+
+
+
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+                success_handler: redirect.after.login
+            oauth:
+                            #login_path:        /connect
+                            resource_owners:
+                                facebook: "/login/check-facebook"
+
+                            login_path:       /login
+                            #
+                            failure_path:      /login
+                         #   use_forward:       false
+                            default_target_path: /
+                            oauth_user_provider:
+                                service: hwi_oauth.user.provider.fosub_bridge
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+       # - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/enteprise, role: ROLE_ENTREPRISE }
+        - { path: ^/membre, role: ROLE_MEMBRE }
+        - { path: ^/panier/livraison, role: ROLE_MEMBRE }
+        - { path: ^/profil, role: ROLE_MEMBRE }
+       # - { path: ^/Affechange, role: ROLE_PARTICULIER }
+        - { path: ^/Affechange, role: ROLE_MEMBRE }
+        - { path: ^/sondage/AfficherSondages, role: ROLE_MEMBRE }
+
+
+

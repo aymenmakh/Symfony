@@ -1,0 +1,17 @@
+{% extends "@EshopUser/layout.html.twig" %}
+
+{% block login %}
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+
+    {% if error is defined and error %}
+        <span>{{ error }}</span>
+    {% endif %}
+    {% for owner in hwi_oauth_resource_owners() %}
+
+        <a class="btn btn-facebook -{{ owner }}" href="{{ hwi_oauth_login_url(owner)  }}">
+            <li class="fa fa-facebook" -{{ owner }} href="{{ hwi_oauth_login_url(owner)  }}">
+
+                {{ owner | trans({}, 'HWIOAuthBundle')|capitalize }}</li>
+        </a>
+    {% endfor %}
+{% endblock login %}

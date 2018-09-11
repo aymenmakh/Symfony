@@ -1,0 +1,7 @@
+{% extends('@EshopUser/adminlayout.html.twig') %}
+{% block body %}
+    <h1 align="center">Page de modification</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form.nomcat) }}
+    {{ form_end(form) }}
+{% endblock %}

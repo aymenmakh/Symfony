@@ -1,0 +1,94 @@
+{% extends "@EshopUser/adminlayout.html.twig" %}
+{% block body %}
+
+    <link rel="stylesheet" href="{{ asset('css/styleTableAdmin.css') }}">
+
+    <body>
+<div align="center">
+<h1 align="center">Les Sondages</h1>
+<h3 align="center">recherche de Sondage</h3>
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{{ form(form) }}
+    {%  if (sondageRecherche!=null) %}
+        {%  for sondage in sondageRecherche %}
+    {%  if (sondage.id!=null) %}
+
+        <table class="tableSondageAdmin">
+            <thead class="thSondage">
+            <tr>
+                <th>Id </th>
+                <th>Sujet</th>
+                <th>Id Admin</th>
+                <th>Date emition</th>
+                <th>Date Expiration</th>
+                <th>Nombre de réponses</th>
+            </tr>
+            </thead>
+            <tbody class="tbSondage">
+                <tr>
+                    <td> {{ sondage.id }}</td>
+                    <td> {{ sondage.sujet }}</td>
+                    <td> {{ sondage.idAdmin }}</td>
+                    <td>{{  sondage.dateemition|date('Y-m-d') }}</td>
+                    <td>{{  sondage.dateExpiration|date('Y-m-d') }}</td>
+
+                    <td>{{  sondage.rcounter }}</td>
+                    <th> <a class="btn btn-buy" href="{{ path('sondage_Afficher_back_Office',{id:sondage.id}) }}">Afficher</a></th>
+                    <th></th>
+                    <th> <a class="btn btn-login" href="{{ path('sondage_supprimer',{id:sondage.id}) }}">Supprimer</a></th>
+                    <th></th>
+                    <th> <a class="btn btn-buy" href="{{ path('charts',{id:sondage.id}) }}">Statistique</a></th>
+
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
+        {% endfor %}
+
+
+    {% else %}
+        <h5>pas de resultat</h5>
+    {% endif %}
+    <h4 align="center">       ---------------------------------------------------------------------------------------</h4>
+    <h3 align="center">Liste des Sondages</h3>
+
+    <table class="tableSondageAdmin">
+        <thead class="thSondage">
+        <tr>
+            <th>Id </th>
+            <th>Sujet</th>
+            <th>Id Admin</th>
+            <th>Date emition</th>
+            <th>Date Expiration</th>
+            <th>Nombre de réponses</th>
+        </tr>
+        </thead>
+        <tbody class="tbSondage">
+    {%  for sondage in sondages %}
+        <tr>
+            <td> {{ sondage.id }}</td>
+            <td> {{ sondage.sujet }}</td>
+            <td> {{ sondage.idAdmin }}</td>
+            <td>{{  sondage.dateemition|date('Y-m-d') }}</td>
+            <td>{{  sondage.dateExpiration|date('Y-m-d') }}</td>
+            <td>{{  sondage.rcounter }}</td>
+            <th> <a class="btn btn-buy" href="{{ path('sondage_Afficher_back_Office',{id:sondage.id}) }}">Afficher</a></th>
+            <th></th>
+            <th> <a class="btn btn-login" href="{{ path('sondage_supprimer',{id:sondage.id}) }}">Supprimer</a></th>
+            <th></th>
+            <th></th>
+            <th> <a class="btn btn-login" href="{{ path('update_sondage',{id:sondage.id}) }}">Modifer</a></th>
+            <th></th>
+            <th> <a class="btn btn-buy" href="{{ path('charts',{id:sondage.id}) }}">Statistique</a></th>
+
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+ <a class="btn btn-buy"  align="center" href="{{ path('add_sondage_params') }}"> Ajouter un Sondage</a>
+
+</div>
+</body>
+{% endblock %}

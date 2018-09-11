@@ -1,0 +1,65 @@
+{% extends "@EshopUser/membrelayoutss.html.twig" %}
+{% block c %}
+    <div id="home-slider">
+        <script>
+            function calcul()
+            {
+
+                var promo= document.getElementById("2").value;
+                var vent  = {{ produit.prix }}
+
+                    document.getElementById("1").value = vent -(vent * promo)/100;
+                {#  {{ produit.prix - (((produit.prix)*(x.__toString) )//100) }};#}
+            }
+        </script>
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-sm-3 slider-left"></div>
+
+                <div class="homeslider">
+
+                    <div class="box-border">
+                        <div class="row">
+<form method="post">
+    <ul>
+
+        <li class="row">
+            <div class="col-sm-6">
+    <label for="postal_code_1" class="required">Prix actuel : {{ produit.prix }}</label>
+                            <div class="custom_select">
+
+                                <select class="input form-control" name="promo" id="2" onchange="calcul()">
+                                    <option >choisir le pourcentge du solde</option>
+                                    <option value="20">20%</option>
+                                    <option value="30">30%</option>
+                                    <option value="40">40%</option>
+                                    <option value="50">50%</option>
+                                    <option value="60">60%</option>
+
+
+                                </select>
+
+                            </div>
+
+
+                            <label for="postal_code_1" class="required">Le prix soldé</label>
+                            <input class="input form-control" type="text" name="prixP" id="1" value="" readOnly="readOnly">
+            </div>
+        </li>
+    </ul>
+    <input type="submit" value="modifier">
+
+</form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+

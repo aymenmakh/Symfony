@@ -1,0 +1,10 @@
+{% extends('@EshopUser/adminlayout.html.twig') %}
+{% block body %}
+<h1 align="center">Ajouter une categorie</h1>
+    <div class="container">
+        {{ form_start(forme,{'attr':{'novalidate':'novalidate'}}) }}
+    <div class="form-group">{{ form_row(forme.nomcat,{'attr':{'class':'form-control'}}) }}
+    </div>
+    {{ form_end(forme) }}
+    </div>
+{% endblock %}

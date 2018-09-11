@@ -1,0 +1,249 @@
+eshop_user_accueil:
+    path:     /
+    defaults: { _controller: EshopUserBundle:Default:accueil }
+eshop_user_homepage:
+    path:     /
+    defaults: { _controller: EshopUserBundle:Default:index }
+eshop_user_homepage2:
+    path:     /entreprise
+    defaults: { _controller: EshopUserBundle:Default:index2 }
+eshop_user_homepage3:
+    path:     /admin/
+    defaults: { _controller: EshopUserBundle:Default:admin }
+eshop_user_cat:
+    path:     /categories
+    defaults: { _controller: EshopUserBundle:Categorie:afficher }
+eshop_user_ajout2:
+    path:     /ajout2
+    defaults: { _controller: EshopUserBundle:Categorie:Ajout2 }
+eshop_user_modifier:
+    path:     /modifier/{id}
+    defaults: { _controller: EshopUserBundle:Categorie:modifier }
+
+eshop_user_supprimer:
+    path:     /supprimer/{id}
+    defaults: { _controller: EshopUserBundle:Categorie:Supprimer }
+eshop_user_afficher:
+    path:     /afficheradmin
+    defaults: { _controller: EshopUserBundle:Categorie:afficheradmin }
+eshop_user_afficherdeal:
+    path:     /afficherdealadmin
+    defaults: { _controller: EshopUserBundle:Deal:afficheradmin }
+eshop_user_supprimerdeal:
+    path:     /supprimerdeal/{id}
+    defaults: { _controller: EshopUserBundle:Deal:Supprimeradmin }
+eshop_user_afficherdeale:
+    path:     /afficherdeale
+    defaults: { _controller: EshopUserBundle:Deal:afficher }
+eshop_user_supprimerdeale:
+    path:     /supprimerdeale/{id}
+    defaults: { _controller: EshopUserBundle:Deal:Supprimer }
+eshop_user_ajout22:
+    path:     /ajout22
+    defaults: { _controller: EshopUserBundle:Deal:Ajout22 }
+eshop_user_modifier1:
+    path:     /modifier1/{id}
+    defaults: { _controller: EshopUserBundle:Deal:modifier1 }
+eshop_mesdeale:
+    path:     /entreprise/mesdeals
+    defaults: { _controller: EshopUserBundle:Deal:mesdeals }
+eshop_user_afficherdealm:
+    path:     /afficherdealm
+    defaults: { _controller: EshopUserBundle:Deal:afficherm }
+eshop_user_detail:
+    path:     /detailsdeal/{id}
+    defaults: { _controller: EshopUserBundle:Deal:detail }
+pdf:
+    path:  /deal/exporter/{id}
+    defaults: { _controller: EshopUserBundle:Default:pdf }
+eshop_user_detailm:
+    path:     /detailsdealm/{id}
+    defaults: { _controller: EshopUserBundle:Deal:detailm }
+panier:
+    path:  /panier
+    defaults: { _controller: EshopUserBundle:Panier:panier }
+ajouter:
+    path:  /ajouter/{id}
+    defaults: { _controller: EshopUserBundle:Panier:ajouter }
+supprimer:
+    path:  /supprimer/{id}
+    defaults: { _controller: EshopUserBundle:Panier:supprimer }
+panier_livraison:
+    path:  /panier/livraison
+    defaults: { _controller: EshopUserBundle:Panier:livraison }
+livraisonAdresseSuppression:
+    path:  /panier/livraison/supression/{id}
+    defaults: { _controller: EshopUserBundle:Panier:adresseSuppression }
+validation:
+    path:  /panier/livraison/validation
+    defaults: { _controller: EshopUserBundle:Panier:validation }
+factures:
+    path: /profile/factures
+    defaults: { _controller: EshopUserBundle:User:factures }
+commandeannuler:
+    path:  /profile/factures/annuler/{id}
+    defaults: { _controller: EshopUserBundle:Commandes:annule }
+commandeaafficher:
+    path:  /profile/factures/afficher/{id}
+    defaults: { _controller: EshopUserBundle:Commandes:affiche }
+pdf1:
+    path:  /profile/factures/exporter/{id}
+    defaults: { _controller: EshopUserBundle:User:pdf }
+acme_payment_prepare_simple_purchase_offline:
+    path:  /payment/{id}
+    defaults: { _controller: EshopUserBundle:Payment:prepareStripeJsPayment }
+acme_payment_done:
+    path:  /payment/details
+    defaults: { _controller: EshopUserBundle:Payment:captureDone}
+eshop_membre_reclamation:
+    path:     /reclamation
+    defaults: { _controller: EshopUserBundle:Reclamation:Ajout2}
+eshop_membre_echange:
+        path:     /echange
+        defaults: { _controller: EshopUserBundle:echange:Ajoutechange }
+
+
+esprit_detail:
+    path:     /detail/{id}
+    defaults: { _controller:  EshopUserBundle:Default:detail }
+
+esprit_profil:
+    path:     /profil
+    defaults: { _controller:  EshopUserBundle:Default:profil}
+
+esprit_produit:
+    path:     /aymen
+    defaults: { _controller: EshopUserBundle:Default:afficher}
+esprit_modif:
+    path:     /modif/{id}
+    defaults: { _controller: EshopUserBundle:Default:Update }
+
+esprit_ajout:
+    path:     /ajout
+    defaults: { _controller: EshopUserBundle:Default:ajout }
+
+esprit_emp:
+    path:     /emp/{id}
+    defaults: { _controller: EshopUserBundle:Default:emp }
+
+
+esprit_modifp:
+    path:     /modifp/{id}
+    defaults: { _controller: EshopUserBundle:Default:modifp }
+
+esprit_promo:
+    path:     /promo/{id}
+    defaults: { _controller: EshopUserBundle:Default:promo }
+
+esprit_parc_supp:
+    path:     /supp/{id}
+    defaults: { _controller: EshopUserBundle:Default:Supp }
+
+eshop_admin_reclamations:
+                path:      /Affichereclamation
+                defaults: { _controller: EshopUserBundle:Reclamation:Afficherec }
+eshop_admin_Traitementreclamation:
+                path:       /Traiterec/{motif}
+                defaults: { _controller: EshopUserBundle:Reclamation:findMotif }
+eshop_reclamation_supp:
+                path:       /supprimi/{id}
+                defaults: { _controller: EshopUserBundle:Reclamation:Supp }
+eshop_reclamation_update:
+                path:       /up/{id}
+                defaults: { _controller: EshopUserBundle:Reclamation:Update }
+eshop_aaadmin_echange:
+        path:      /affAdmin
+        defaults: { _controller: EshopUserBundle:echange:AfficheechAdmin  }
+eshop_echange_suppression:
+    path:       /suppe/{id}
+    defaults: { _controller: EshopUserBundle:echange:Supprimer }
+
+esprit_promo:
+    path:     /promo/{id}
+    defaults: { _controller: EshopUserBundle:Default:promo }
+
+esprit_rech:
+    path: /rech/
+    defaults: { _controller:  EshopUserBundle:Default:rechDQL}
+
+esprit_catalogue:
+    path: /catalogue
+    defaults: { _controller: EshopUserBundle:Default:catalogue}
+
+esprit_admin:
+    path:     /adminee
+    defaults: { _controller: EshopUserBundle:Default:admin2 }
+
+
+
+
+esprit_suppA:
+    path:     /suppadmin/{id}
+    defaults: { _controller: EshopUserBundle:Default:suppA }
+
+admin_path:
+    path: /allpub
+    defaults: { _controller: EshopUserBundle:Default:allpub }
+
+eshop_echange_suppression:
+    path:       /suppe/{id}
+    defaults: { _controller: EshopUserBundle:echange:Supprimer }
+
+eshop_membre_Proposechange:
+    path:     /ProposerEchange/{idech}
+    defaults: { _controller: EshopUserBundle:echange:ProposerEchange }
+
+eshop_membre_Affechange:
+     path:     /Affechange
+     defaults: { _controller: EshopUserBundle:echange:AfficheEch }
+
+eshop_membre_MODechange:
+     path:      /mod/{idech}
+     defaults: { _controller: EshopUserBundle:echange:Update }
+
+eshop_mesproduits:
+     path:     /Mesproduits
+     defaults: { _controller: EshopUserBundle:echange:mesProduits }
+
+List_sondages_Afficher_front_Office:
+    path:  /sondage/AfficherSondages
+    defaults: { _controller: EshopUserBundle:Sondage:SondageListFronOffice }
+
+sondage_Afficher:
+    path:  /sondage/AfficherSondage/{id}
+    defaults: { _controller: EshopUserBundle:Sondage:Afficher }
+List_sondages_Afficher_back_Office:
+    path:  /admin/AfficherSondagesBackOffice
+    defaults: { _controller: EshopUserBundle:Sondage:SondageListBackOffice }
+sondage_Afficher_back_Office:
+    path:  /admin/AfficherSondageBackOffice/{id}
+    defaults: { _controller: EshopUserBundle:Sondage:AfficherAdmin }
+sondage_supprimer:
+    path:     /admin/Supprimersondage/{id}
+    defaults: { _controller: EshopUserBundle:Sondage:supprimerSondage }
+charts:
+    path:  /admin/charts/{id}
+    defaults: { _controller: EshopUserBundle:Sondage:chart }
+update_sondage:
+    path:  /admin/modifiersondage/{id}
+    defaults: { _controller: EshopUserBundle:Sondage:update }
+add_sondage_params:
+    path:  /admin/ajoutersondageparams
+    defaults: { _controller: EshopUserBundle:Sondage:addparams }
+manage_sondages:
+    path:  /admin/managesondages
+    defaults: { _controller: EshopUserBundle:Default:affichersondage }
+sondage_SubmitSondage:
+    path:  /sondage/SubmitSondage
+    defaults: { _controller: EshopUserBundle:Sondage:SubmitSondage }
+add_sondage:
+    path:  /admin/ajoutersondage/{nb}
+    defaults: { _controller: EshopUserBundle:Sondage:add }
+
+esprit_pub:
+    path:     /pub/{id}
+    defaults: { _controller: EshopUserBundle:Default:pub}
+
+esprit_erreur:
+    path:     /succe
+    defaults: { _controller: EshopUserBundle:Default:erreur}

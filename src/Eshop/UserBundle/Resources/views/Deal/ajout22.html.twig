@@ -1,0 +1,33 @@
+{% extends('@EshopUser/entrepriselayoutss.html.twig') %}
+
+{% block c %}
+<div id="home-slider">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-sm-3 slider-left"></div>
+
+            <div class="homeslider">
+
+                <div class="box-border">
+
+                    <div class="row">
+<div class="container">
+    <div class="col-sm-6">
+
+    <h1 align="center">Ajouter un deal</h1>
+
+
+            {{ form_start(forme,{'attr':{'novalidate':'novalidate'}}) }}
+            <div class="form-group">{{ form_row(forme.titre,{'attr':{'class':'form-control'}}) }}
+                {{ form_row(forme.photo,{'attr':{'class':'form-control'}}) }}<br>
+                {{ form_row(forme.dateExpiration,{'attr':{'class':'form-control'}}) }}
+                {{ form_row(forme.description,{'attr':{'class':'form-control'}}) }}
+            </div>
+            <div class="button">
+            {{ form_end(forme) }}
+            </div>
+
+    </div></div></div></div></div></div></div></div>
+{% endblock %}
+

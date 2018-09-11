@@ -1,0 +1,115 @@
+{% extends "@EshopUser/membrelayout.html.twig" %}
+{% block class %}
+<body class="category-class">
+
+{% endblock class %}
+{% block panier %}
+
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">Checkout</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2">Checkout</span>
+        </h2>
+        <!-- ../page heading-->
+        <div class="page-content checkout-page">
+<ul><li class="row"></li></ul>
+            <h3 class="checkout-sep">2. Billing Infomations</h3>
+            <div class="box-border">
+{{ form_start(form) }}
+               <ul>
+                    <li class="row">
+                        <div class="col-sm-6">
+                            <label for="first_name" class="required">{{ form_label(form.nom) }}</label>
+
+{{ form_widget(form.nom) }}
+                        </div><!--/ [col] -->
+                        <div class="col-sm-6">
+                            <label for="last_name" class="required">{{ form_label(form.prenom) }}</label>
+                            {{ form_widget(form.prenom) }}
+                        </div><!--/ [col] -->
+                    </li><!--/ .row -->
+                    <li class="row">
+                        <div class="col-sm-6">
+                            <label for="company_name">{{ form_label(form.telephone) }}</label>
+                            {{ form_widget(form.telephone) }}
+
+                        </div><!--/ [col] -->
+                        <div class="col-sm-6">
+                            <label for="postal_code" class="required">{{ form_label(form.pays) }}</label>
+                            {{ form_widget(form.pays) }}
+                        </div><!--/ [col] -->
+                    </li><!--/ .row -->
+                    <li class="row">
+                        <div class="col-xs-12">
+
+                            <label for="address" class="required">{{ form_label(form.adresse) }}</label>
+                            {{ form_widget(form.adresse) }}
+
+                        </div><!--/ [col] -->
+
+                    </li><!-- / .row -->
+
+                    <li class="row">
+
+
+
+
+                    </li><!--/ .row -->
+
+                    <li class="row">
+
+                        <div class="col-sm-6">
+
+                            <label for="postal_code" class="required">Zip/Postal Code</label>
+{{ form_widget(form.cp) }}                        </div><!--/ [col] -->
+
+                        <div  class="col-sm-6">
+
+                        </div><!--/ [col] -->
+                    </li><!--/ .row -->
+
+
+                    <li class="row">
+                        <div class="col-sm-6">
+                            <label for="password" class="required">{{ form_label(form.ville) }}</label>
+                            {{ form_widget(form.ville) }}
+                        </div><!--/ [col] -->
+
+
+                    </li><!--/ .row -->
+                   <li class="row">
+                       <div class="col-sm-6">
+                           <label for="password" class="required">{{ form_label(form.complement) }}</label>
+                           {{ form_widget(form.complement) }}
+                       </div><!--/ [col] -->
+                    </li>{{ form_end(form) }}
+                </ul>
+            </div>
+
+            {% if utilisateur|length != 0 %}
+            <h3 class="checkout-sep">Adresse de livraison</h3>
+            <div class="box-border">
+                <form action="{{ path('validation') }}" method="POST">   <ul>{% for adresse in utilisateur %}
+                    <li>
+                        <input type="radio" name="livraison" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
+                        {{ adresse.adresse }}, {{ adresse.cp }} {{ adresse.ville }} - {{ adresse.pays }}
+                        <br />{{ adresse.prenom }} {{ adresse.nom }} <a class="action" href="{{ path('livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="fa fa-trash-o"></i> </a>
+                    </li>
+{% endfor %}
+                    </ul>
+                <button class="button" type="submit">Continue</button>
+                </form>
+            </div> {% endif %}
+
+
+</div>
+
+{% endblock %}

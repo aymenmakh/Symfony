@@ -1,0 +1,119 @@
+
+{% extends "@EshopUser/adminlayout.html.twig" %}
+
+
+
+
+{% block body %}
+<head>
+
+
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+    </style>
+    <style>
+        html, body {
+            padding:0;
+            margin:0;
+            height:100%
+        }
+        #cache {
+            position:absolute;
+            background:rgba(0,0,0,0);
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            z-index: -1;
+            transition:background .5s
+        }
+        #cache:target {
+            background:rgba(0,0,0,.5);
+            z-index: 1;
+        }
+        .popup {
+            position:absolute;
+            z-index: 1000;
+            display:none;
+            top:150px;
+            left:500px;
+            right:500px;
+        }
+        .popup a {
+            position:absolute;
+            background: #333;
+            color:#fff;
+            border-radius: 50%;
+            width:20px;
+            line-height: 20px;
+            text-align: center;
+            font-family:arial;
+            right:0;
+            text-decoration: none;
+
+        }
+        #cache:target ~ .popup {
+            display:block;
+        }
+    </style>
+
+
+</head>
+
+    <h1 >Liste des echanges </h1>
+
+
+
+
+
+    <table border="1" rules="rows" >
+        <tr>
+            <th>Photo echange </th> <th> description </th> <th>prix</th><th>prix minimal</th> <th>date début</th><th>date fin</th><th>Etat</th><th>Propriétaire</th>
+        <th>Categorie</th></tr>
+        {% for echange in echanges  %}
+            <tr>
+                <td><div id="cache"></div>
+                    <div class="entry-thumb image-hover2">
+                    <a href="#cache"><img src="{{ asset('images/products/' ~ echange.imageName) }}" width="160" height="80"></a></div>
+                <div class="popup"><img src="{{ asset('images/products/' ~ echange.imageName) }}" width="640" height="320"><a href="#">X</a></div>
+
+                <td>{{ echange.description }}</td><td>{{ echange.prix }}</td>
+                <td>{{ echange.prixMinimal }}</td>
+                <td class="cart_avail">
+                    {{ echange.datedeb|date('H:i:s') }}
+                </td>
+                <td class="cart_description">
+                    {{ echange.datefin|date('H:i:s') }}
+                </td>
+                <td>{{ echange.etat }}</td>
+                <td>{{ echange.eid }}</td>
+                <td>{{ echange.idcat.nomCat }}</td>
+                </td>
+                <td><a href="{{ path('eshop_echange_suppression', { 'id': echange.id }) }}">Supprimer</a></td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+    <div class="navigation text-center">
+        {{ knp_pagination_render(echanges) }}
+    </div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends('@EshopUser/membrelayoutss.html.twig') %}
+{% block c %}
+    <div align="center">
+    <div id="home-slider">
+    <div class="container">
+    <br>
+    <div class="row">
+    <div class="col-sm-3 slider-left"></div>
+
+    <div class="homeslider">
+
+    <div class="box-border">
+
+    <div class="row">
+    <div class="container">
+    <div class="col-sm-6">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/styleList.css') }}">
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="{{ asset('http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js') }}"></script>
+    <script src="{{ asset('js/listSondage.js') }}"></script>
+
+
+
+
+        <br>
+
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 80%;
+                    margin: auto;
+
+                }
+
+                th, td {
+                    text-align: center;
+                    padding: 8px;
+                }
+
+                tr:nth-child(even){background-color: #f2f2f2}
+            </style>
+            <style>
+                html, body {
+                    padding:0;
+                    margin:0;
+                    height:100%
+                }
+                #cache {
+                    position:absolute;
+                    background:rgba(0,0,0,0);
+                    top:0;
+                    right:0;
+                    bottom:0;
+                    left:0;
+                    z-index: -1;
+                    transition:background .5s
+                }
+                #cache:target {
+                    background:rgba(0,0,0,.5);
+                    z-index: 1;
+                }
+                .popup {
+                    position:absolute;
+                    z-index: 1000;
+                    display:none;
+                    top:150px;
+                    left:500px;
+                    right:500px;
+                }
+                .popup a {
+                    position:absolute;
+                    background: #333;
+                    color:#fff;
+                    border-radius: 50%;
+                    width:20px;
+                    line-height: 20px;
+                    text-align: center;
+                    font-family:arial;
+                    right:0;
+                    text-decoration: none;
+
+                }
+                #cache:target ~ .popup {
+                    display:block;
+                }
+            </style>
+
+
+
+    </head>
+<body>
+<table align="center">
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{# {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %} #}
+
+    <div align="center" class="SondageListBlock" style="margin-right: 250px;">
+        <h1 align="center"> Liste des Sondages </h1>
+        <h3 align="center">recherche de Sondage</h3>
+        <div align="center">{{ form(form) }}
+        </div>
+
+    {%  if (sondageRecherche!=null) %}
+        <dl>  {%  for sondage in sondageRecherche %}
+    {%  if (sondage.id!=null) %}
+
+                <dt>{{ sondage.sujet }}</dt>
+                <dd>Date emition : {{  sondage.dateemition|date('Y-m-d') }}
+                    <br>Date Expiration :  {{  sondage.dateExpiration|date('Y-m-d') }}
+                    {% if(sondage.rcounter==null) %}
+                        Réponses : 0
+                    {% else %}
+                        Réponses : {{ sondage.rcounter }}
+                    {% endif %}
+                    <br>
+                    {% if(done[sondage.id]==null) %}
+                        {% if sondage.dateemition <  date() and sondage.dateexpiration >  date() %}
+
+
+                        <a href="{{ path('sondage_Afficher',{id:sondage.id}) }}"><button  align="center" type="button">Répondre</button></a>
+                    {% endif %}
+                        {% else %}
+                        <a href="{{ path('sondage_Afficher',{id:sondage.id}) }}"><button  align="center" type="button">Afficher Réponses</button></a>
+
+                    {% endif %}</dd>
+
+        </dl>
+
+    {% endif %}
+        {% endfor %}
+
+
+    {% else %}
+        <h5 align="center">pas de resultat</h5>
+    {% endif %}
+    <h4 align="center">       ---------------------------------------------------------------------------------------</h4>
+
+
+
+
+        <dl> {%  for sondage in sondages %}
+            <dt>{{ sondage.sujet }}</dt>
+            <dd>Date emition : {{  sondage.dateemition|date('Y-m-d') }}
+                <br>Date Expiration :  {{  sondage.dateExpiration|date('Y-m-d') }}
+                {% if(sondage.rcounter==null) %}
+                    Réponses : 0
+                {% else %}
+                    Réponses : {{ sondage.rcounter }}
+                {% endif %}
+                     <br>
+                {% if(done[sondage.id]==null) %}
+                     <a href="{{ path('sondage_Afficher',{id:sondage.id}) }}"><button  align="center" type="button">Répondre</button></a>
+                {% else %}
+                    <a href="{{ path('sondage_Afficher',{id:sondage.id}) }}"><button  align="center" type="button">Afficher Réponses</button></a>
+
+                {% endif %}</dd>
+
+            {% endfor %}
+        </dl>
+
+        <br>
+        <br>
+    </div>
+
+<script>$('dt').addClass('fechado');
+
+    var $active = null;
+
+    $('dt').click(function(){
+
+        if ($active !== null){
+            $active.next().slideToggle("fast");
+            $active.removeClass('aberto');
+            $active.addClass('fechado');
+        }
+
+        $active = $(this);
+        $active.addClass('aberto');
+        $next = $active.next();
+
+        if ($next.is(":hidden")){
+            $next.slideToggle("fast");
+        }else{
+            $active.removeClass('aberto');
+            $active.addClass('fechado');
+            $active = null;
+        }
+
+    })</script>
+</table>
+</body>
+        </html>  </div></div></div></div></div></div></div>
+{% endblock %}

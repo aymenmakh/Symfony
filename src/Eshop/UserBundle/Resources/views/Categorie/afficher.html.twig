@@ -1,0 +1,29 @@
+{% extends('@EshopUser/adminlayout.html.twig') %}
+{% block body %}
+    <h1 align="center"><u>Liste des Catégories</u></h1>
+    <br>
+
+    <h3 align="center">Ajouter une catégorie <a href="{{ path('eshop_user_ajout2') }}"><img src="{{ asset('Template/add+.png') }}" align="center" height="25" width="25" alt="ajouter une catégorie"></a>
+    </h3>
+<br>
+    <table border="0" align="center" rules="rows">
+
+        <td>ID</td>
+        <td>NOM DE CATEGORIE</td>
+
+        </tr>
+        {% for categorie in categories %}
+            <tr>
+                <td width="40">{{ categorie.idcat }} </td>
+                <td width="210">{{ categorie.nomcat}}</td>
+                <td width="100"><a href="{{ path('eshop_user_modifier',{'id':categorie.idcat}) }}"><img src="{{ asset('Template/edit+.png') }}" align="center" height="25" width="25" ></a></td>
+                <td width="100"><a href="{{ path('eshop_user_supprimer',{'id':categorie.idcat}) }}"><img src="{{ asset('Template/rem+.png') }}" align="center" height="25" width="25" ></a></td>
+
+            </tr>
+
+        {% endfor %}
+    </table>
+
+
+
+{% endblock %}

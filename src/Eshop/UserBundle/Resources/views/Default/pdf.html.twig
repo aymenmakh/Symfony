@@ -1,0 +1,24 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>{{deals.titre }}</h1>
+
+<div>
+
+    {{ deals.nbach }} Acheteur(s)
+</div>
+<div class="info-orther">
+    <p>Date emition: {{ deals.dateemition|date('Y-m-d') }}</p>
+    <p>Date expiration: {{ deals.dateExpiration|date('Y-m-d') }}</p>
+    <p>Depose par: {{deals.idEntreprise.nom }} </p>
+</div>
+
+
+
+<p>{{deals.description }}</p>
+</body>
+
+
+</html>

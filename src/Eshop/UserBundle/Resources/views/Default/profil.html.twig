@@ -1,0 +1,91 @@
+{% extends "@EshopUser/membrelayoutss.html.twig" %}
+{% block profile %}
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}">
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    {% else %}
+        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+{% endblock profile %}
+{% block c %}
+
+    <div id="home-slider">
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-sm-3 slider-left"></div>
+
+                <div class="homeslider">
+
+                    <div class="box-border">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img class="img-responsive" alt="product" src="{{ asset('uploads/brochures/'~user.path) }}" />
+                            </div>
+
+
+                            <div class="col-sm-6">
+
+                                <br>
+                                <b>Nom :</b>&nbsp;{{user.nom }} <label></label><br><br><br>
+                                <b>Prenom :</b> &nbsp; {{ user.prenom }} <label></label><br><br><br>
+                                <b>Adresse terrestre :</b> &nbsp;{{ user.adresse }}  <label></label><br><br><br>
+                                <b>Adresse E-mail:</b>&nbsp; {{ user.email }} <label></label><br><br><br>
+                                <b>Telephone :</b> &nbsp;{{ user.telephone }} <label></label><br><br><br>
+
+
+
+
+
+                                <a href="{{ path('esprit_produit') }}">Consulter mes Produits</a></td> &nbsp;&nbsp;
+
+                                <a href="{{ path('esprit_modif', { 'id': user.id }) }}">Modifier mon profil</a><br> <br>
+                                <a href="{{ path('esprit_ajout') }}">Déposer annonce</a>&nbsp;&nbsp;
+                                <a href="{{ path('esprit_emp',{ 'id': user.id }) }}">effectuer une publicité</a></td>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="home-slider">
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-sm-3 slider-left"></div>
+
+                <div class="homeslider">
+
+                    <div class="box-border">
+
+                        <div class="row">
+                            <div id="googleMap" style="width:860px;height: 380px;"></div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <input id="Lat" type="hidden" value="{{  Latitudes }}">
+    <input id="Lng" type="hidden" value="{{  Longitudes }}">
+
+
+{% endblock %}
+
+
+
+

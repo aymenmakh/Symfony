@@ -1,0 +1,76 @@
+{% extends('@EshopUser/membrelayout.html.twig') %}
+{% block class %} <body class="category-class">   {% endblock %}
+{% block panier %}
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading no-line">
+            <span class="page-heading-title2">Mes Factures</span>
+        </h2>
+        <!-- ../page heading-->
+        <div class="page-content page-order">
+
+            <div class="order-detail-content">
+<form>
+    <table class="table table-bordered table-responsive cart_summary">
+        <thead>
+        <tr>
+            <th>Références</th>
+            <th>Date</th>
+            <th>{{ knp_pagination_sortable(factures, 'PrixTTC', 'a.id') }}</th>
+            <th>Produits</th>
+            <th>Actions</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% if factures|length == 0 %}
+            <tr>
+                <td colspan="4"><center>Ancunne facture actuellement.</center></td>
+            </tr>
+        {% endif %}
+        {% for facture in factures %}
+            <tr>
+                <td>ref : {{ facture.reference }}</td>
+                <td>{{ facture.date|date('d/m/Y') }}</td>
+                <td>{{ facture.commande.prixTTC }} €</td>
+                <td>{% for p in facture.commande.produit %}
+                    <p>{{ p.reference }}</p>
+
+                    {% endfor %}</td>
+                {% set difference = date("now"| date()).diff(date(facture.date)) %}
+                {% set leftDays = difference.d %}
+                <td>
+
+                          <a href="{{ path('commandeaafficher', { 'id' : facture.id }) }}">  <button class="btn btn-default" type="button">Consulter</button></a>
+
+                {% if leftDays == 0 %}
+                    {% set leftHours = difference.h %}
+                    {% if leftHours <= 24 %}
+
+                            <a href="{{ path('commandeannuler', { 'id' : facture.id }) }}"><button class="btn btn-default" type="button">Annuler</button>
+                            </a>
+
+
+                {% endif %}{% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</form>
+
+
+            </div>
+        </div>
+        <div class="navigation text-center">
+            {{ knp_pagination_render(factures) }}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

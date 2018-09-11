@@ -1,0 +1,46 @@
+{% extends('@EshopUser/membrelayoutss.html.twig') %}
+{% block c %}
+
+
+    <div align="center">
+    <div id="home-slider">
+    <div class="container">
+    <br>
+    <div class="row">
+    <div class="col-sm-3 slider-left"></div>
+
+    <div class="homeslider">
+
+    <div class="box-border">
+
+    <div class="row">
+    <div class="container">
+    <div class="col-sm-6">
+
+    <h1 div="center">Proposition d'echange </h1>
+
+
+    {{ form_start(form) }}
+    {# ... #}
+
+    {{ form_end(form) }}
+
+
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+
+        <div class="alert alert-echec">
+            {{ flashMessage }}
+        </div>
+
+    {% endfor %}
+    </div></div></div></div></div></div></div></div></div>
+{% endblock  %}

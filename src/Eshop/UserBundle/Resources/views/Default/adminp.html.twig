@@ -1,0 +1,100 @@
+{% extends "@EshopUser/adminlayout.html.twig" %}
+
+
+
+
+{% block body %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}">
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    {% else %}
+        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+
+    <div class="box-border">
+        <table class="table table-bordered table-responsive cart_summary">
+
+            <thead>
+            <tr>
+                <th> Nom du propriétaire</th>
+                <th>photo</th>
+                <th class="cart_product">Date debut</th>
+
+
+                <th>Dat fin</th>
+                <th>Nom de l'entreprise</th>
+
+
+
+
+
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+            {% for p in publicite %}
+                <tr>
+                    <td class="cart_description">
+
+                        {{ p.nom  }}
+                    </td>
+                    <td><img src="{{ asset('uploads/brochures/'~p.photo) }}" width="80" height="50" style="float:right"   alt="...">
+                    <td class="cart_description">
+
+                        {{ p.dated |date}}
+
+                    <td class="cart_description">
+
+                        {{ p.dated |date}}
+                    </td>
+
+                    <td class="cart_description">
+
+                        {{ p.idMembre}}
+                    </td>
+
+
+
+                </tr>
+            {% endfor %}
+
+
+            <!--
+                                    <tr>
+                                        <td class="cart_product">
+                                            <a href="#"><img src="{{ asset('Template/assets/data/product-100x122.jpg') }}" alt="Product"></a>
+                                        </td>
+                                        <td class="cart_description">
+                                            <p class="product-name"><a href="#">Frederique Constant </a></p>
+                                            <small class="cart_ref">SKU : #123654999</small><br>
+                                            <small><a href="#">Color : Beige</a></small><br>
+                                            <small><a href="#">Size : S</a></small>
+                                        </td>
+                                        <td class="cart_avail"><span class="label label-success">In stock</span></td>
+                                        <td class="price"><span>61,19 €</span></td>
+                                        <td class="qty">
+                                            <input class="form-control input-sm" type="text" value="1">
+                                            <a href="#"><i class="fa fa-caret-up"></i></a>
+                                            <a href="#"><i class="fa fa-caret-down"></i></a>
+                                        </td>
+                                        <td class="price">
+                                            <span>61,19 €</span>
+                                        </td>
+                                        <td class="action">
+                                            <a href="#">Delete item</a>
+                                        </td>
+                                    </tr>
+                                    -->
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends('@EshopUser/layout2.html.twig') %}
+{% block c %}
+    <div id="content-wrap">
+        <div class="container">
+            <div id="hot-categories" class="row">
+                <div class="col-sm-12 group-title-box">
+                    <h2 class="group-title ">
+                        <span id="ancre">categories</span>
+                    </h2>
+                </div>
+                {% for c in categories %}
+
+
+                <div class="col-sm-6  col-lg-3 cate-box">
+                    <div class="cate-tit" >
+                        <div class="div-1" style="width: 46%;">
+                            <div class="cate-name-wrap">
+                                <p class="cate-name">{{ c.NomCat }}</p>
+                            </div>
+                            <a href="" class="cate-link link-active" data-ac="flipInX" ><span>Afficher</span></a>
+                        </div>
+
+
+                    </div>
+                </div> {% endfor %}
+            </div> <!-- /#hot-categories -->
+
+        </div> <!-- /.container -->
+    </div>
+
+
+
+{% endblock c %}

@@ -1,0 +1,225 @@
+{% extends('@EshopUser/entrepriselayoutss.html.twig') %}
+{% block c %}
+
+    <div class="columns-container">
+        <div class="container" id="columns">
+            <!-- breadcrumb -->
+            <div class="breadcrumb clearfix">
+                <a class="home" href="{{ path('eshop_user_homepage2')}}" title="Return to Home">Accueil</a>
+                <span class="navigation-pipe">&nbsp;</span>
+                <a href="{{ path('eshop_user_afficherdeale')}}" title="Return to Home">Deals</a>
+                <span class="navigation-pipe">&nbsp;</span>
+                <a title="Return to Home">Details du deal
+                    </a>
+            </div>
+            <!-- ./breadcrumb -->
+            <!-- row -->
+            <div class="row">
+
+                <!-- Center colunm-->
+                <div class="center_column col-xs-12 col-sm-12" id="center_column">
+                    <!-- Product -->
+                    <div id="product">
+                        <div class="primary-box row">
+                            <div class="pb-left-column col-xs-12 col-sm-5">
+                                <!-- product-imge-->
+                                <div class="product-image">
+                                    <div class="product-full">
+                                        <img id="product-zoom" src="{{ asset('images/products/' ~ deals.imageName) }}" title="Funky roots" />
+
+                                    </div>
+                                    <div class="product-img-thumb" id="gallery_01">
+                                        <ul class="owl-carousel" data-items="3" data-nav="true" data-dots="false" data-margin="21" data-loop="true">
+                                            <li>
+                                                <a href="#" data-image="assets/data/product-s3-420x512.jpg" data-zoom-image="assets/data/product-s3-850x1036.jpg">
+                                                    <img id="product-zoom"  src="assets/data/product-s3-100x122.jpg" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-image="assets/data/product-s2-420x512.jpg" data-zoom-image="assets/data/product-s2-850x1036.jpg">
+                                                    <img id="product-zoom"  src="assets/data/product-s2-100x122.jpg" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-image="assets/data/product-420x512.jpg" data-zoom-image="assets/data/product-850x1036.jpg">
+                                                    <img id="product-zoom"  src="assets/data/product-100x122.jpg" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-image="assets/data/product-s4-420x512.jpg" data-zoom-image="assets/data/product-s4-850x1036.jpg">
+                                                    <img id="product-zoom"  src="assets/data/product-s4-100x122.jpg" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-image="assets/data/product-s5-420x512.jpg" data-zoom-image="assets/data/product-s5-850x1036.jpg">
+                                                    <img id="product-zoom"  src="assets/data/product-s5-100x122.jpg" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-image="assets/data/product-s6-420x512.jpg" data-zoom-image="assets/data/product-s6-850x1036.jpg">
+                                                    <img id="product-zoom"  src="assets/data/product-s6-100x122.jpg" />
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- product-imge-->
+                            </div>
+                            <div class="pb-right-column col-xs-12 col-sm-7">
+                                <h1 class="product-name">{{deals.titre }}</h1>
+                                <div class="product-comments">
+                                    <div class="product-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="comments-advices">
+                                        <a href="#">Based  on 3 ratings</a>
+                                        <a href="#"><i class="fa fa-pencil"></i> write a review</a>
+                                    </div>
+                                </div>
+                                <div class="product-price-group">
+
+                                    <span class="discount"><img width="22" height="22" src="{{ asset('Template/user.png') }}" /> {{ deals.nbach }} Acheteur(s)</span>
+                                </div>
+                                <div class="info-orther">
+                                    <p>Date émition: {{ deals.dateemition|date('Y-m-d') }}</p>
+                                    <p>Date expiration: {{ deals.dateExpiration|date('Y-m-d') }}</p>
+                                    <p>Déposé par: {{deals.idEntreprise.nom }} </p>
+                                </div>
+
+
+                                <div class="form-action">
+
+                                    <div class="button-group">
+                                        <a class="wishlist" href="#"><i class="fa fa-heart-o"></i>
+                                            <br>Wishlist</a>
+                                        <a class="compare" href="#"><i class="fa fa-signal"></i>
+                                            <br>
+                                            Compare</a>
+                                    </div>
+                                </div>
+                                <div class="form-share">
+                                    <div class="sendtofriend-print">
+                                        <a href="javascript:print();"><i class="fa fa-print"></i> Imprimer</a>
+                                        <a href="#"><i class="fa fa-envelope-o fa-fw"></i>Envoyer via mail</a>
+                                    </div>
+                                    <div class="network-share">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- tab product -->
+                        <div class="product-tab">
+                            <ul class="nav-tab">
+                                <li class="active">
+                                    <a aria-expanded="false" data-toggle="tab" href="#product-detail">Details</a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-container">
+                                <div id="product-detail" class="tab-panel active">
+                                    <p>{{deals.description }}</p>
+                                </div>
+                                <div id="information" class="tab-panel">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td width="200">Compositions</td>
+                                            <td>Cotton</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Styles</td>
+                                            <td>Girly</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Properties</td>
+                                            <td>Colorful Dress</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="reviews" class="tab-panel">
+                                    <div class="product-comments-block-tab">
+                                        <div class="comment row">
+                                            <div class="col-sm-3 author">
+                                                <div class="grade">
+                                                    <span>Grade</span>
+                                                    <span class="reviewRating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="info-author">
+                                                    <span><strong>Jame</strong></span>
+                                                    <em>04/08/2015</em>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9 commnet-dettail">
+                                                Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar
+                                            </div>
+                                        </div>
+                                        <div class="comment row">
+                                            <div class="col-sm-3 author">
+                                                <div class="grade">
+                                                    <span>Grade</span>
+                                                    <span class="reviewRating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="info-author">
+                                                    <span><strong>Author</strong></span>
+                                                    <em>04/08/2015</em>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9 commnet-dettail">
+                                                Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar
+                                            </div>
+                                        </div>
+                                        <p>
+                                            <a class="btn-comment" href="#">Write your review !</a>
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div id="extra-tabs" class="tab-panel">
+                                    <p>Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Sed lectus. Sed a libero. Vestibulum eu odio.</p>
+
+                                    <p>Maecenas vestibulum mollis diam. In consectetuer turpis ut velit. Curabitur at lacus ac velit ornare lobortis. Praesent ac sem eget est egestas volutpat. Nam eget dui.</p>
+
+                                    <p>Maecenas nec odio et ante tincidunt tempus. Vestibulum suscipit nulla quis orci. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aenean ut eros et nisl sagittis vestibulum. Aliquam eu nunc.</p>
+                                </div>
+                                <div id="guarantees" class="tab-panel">
+                                    <p>Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Sed lectus. Sed a libero. Vestibulum eu odio.</p>
+
+                                    <p>Maecenas vestibulum mollis diam. In consectetuer turpis ut velit. Curabitur at lacus ac velit ornare lobortis. Praesent ac sem eget est egestas volutpat. Nam eget dui.</p>
+
+                                    <p>Maecenas nec odio et ante tincidunt tempus. Vestibulum suscipit nulla quis orci. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aenean ut eros et nisl sagittis vestibulum. Aliquam eu nunc.</p>
+                                    <p>Maecenas vestibulum mollis diam. In consectetuer turpis ut velit. Curabitur at lacus ac velit ornare lobortis. Praesent ac sem eget est egestas volutpat. Nam eget dui.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./tab product -->
+                        <!-- box product -->
+
+                        <!-- ./box product -->
+                        <!-- box product -->
+
+                        <!-- ./box product -->
+                    </div>
+                    <!-- Product -->
+                </div>
+                <!-- ./ Center colunm -->
+            </div>
+            <!-- ./row-->
+        </div>
+    </div>
+    <div>{{ socialButtons() }}</div>
+{% endblock %}

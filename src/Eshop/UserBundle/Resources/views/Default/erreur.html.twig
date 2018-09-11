@@ -1,0 +1,35 @@
+{% extends('@EshopUser/membrelayoutss.html.twig') %}
+{% block c %}
+<div id="home-slider">
+    <div class="container">
+
+        <br>
+        <div class="row">
+            <div class="col-sm-3 slider-left"></div>
+
+            <div class="homeslider">
+
+                <div class="box-border">
+                    <div class="row">
+                       <b>Votre pub a été ajouter
+<br>
+                           {% for p in pub %}
+                       Vous devez payer {{ p.prix }} DT
+                           {% endfor %}
+                           </b>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}
+
+
+
+
+

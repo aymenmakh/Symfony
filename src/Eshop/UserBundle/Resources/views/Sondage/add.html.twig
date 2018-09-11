@@ -1,0 +1,187 @@
+{% extends "@EshopUser/adminlayout.html.twig" %}
+{% block body %}
+<head>
+    <script src="{{ asset('js/jquery-2.1.1.js')}}"></script>
+    <script src="{{ asset('DPicker/js/moment.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('DPicker/css/bootstrap-datetimepicker.min.css')}}"> <!-- Resource style -->
+    <script src="{{ asset('DPicker/js/bootstrap-datetimepicker.min.js')}}"></script>
+    <link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+
+    <script src="{{ asset('js/bootstrap.min.js')}}" rel="stylesheet" ></script>
+    <style>
+        .navbar-default {
+            background-color: #ffffff;
+            border-color: #67dbf0;
+        }
+        .navbar-default .navbar-brand {
+            color: #7c7c7c;
+        }
+        .navbar-default .navbar-brand:hover,
+        .navbar-default .navbar-brand:focus {
+            color: #38a7bb;
+        }
+        .navbar-default .navbar-text {
+            color: #7c7c7c;
+        }
+        .navbar-default .navbar-nav > li > a {
+            color: #7c7c7c;
+        }
+        .navbar-default .navbar-nav > li > a:hover,
+        .navbar-default .navbar-nav > li > a:focus {
+            color: #38a7bb;
+        }
+        .navbar-default .navbar-nav > li > .dropdown-menu {
+            background-color: #ffffff;
+        }
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+            color: #7c7c7c;
+        }
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+            color: #38a7bb;
+            background-color: #67dbf0;
+        }
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+            background-color: #67dbf0;
+        }
+        .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+        .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+        .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+            color: #38a7bb;
+            background-color: #67dbf0;
+        }
+        .navbar-default .navbar-nav > .active > a,
+        .navbar-default .navbar-nav > .active > a:hover,
+        .navbar-default .navbar-nav > .active > a:focus {
+            color: #38a7bb;
+            background-color: #67dbf0;
+        }
+        .navbar-default .navbar-nav > .open > a,
+        .navbar-default .navbar-nav > .open > a:hover,
+        .navbar-default .navbar-nav > .open > a:focus {
+            color: #38a7bb;
+            background-color: #67dbf0;
+        }
+        .navbar-default .navbar-toggle {
+            border-color: #67dbf0;
+        }
+        .navbar-default .navbar-toggle:hover,
+        .navbar-default .navbar-toggle:focus {
+            background-color: #67dbf0;
+        }
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: #7c7c7c;
+        }
+        .navbar-default .navbar-collapse,
+        .navbar-default .navbar-form {
+            border-color: #7c7c7c;
+        }
+        .navbar-default .navbar-link {
+            color: #7c7c7c;
+        }
+        .navbar-default .navbar-link:hover {
+            color: #38a7bb;
+        }
+
+        @media (max-width: 767px) {
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+                color: #7c7c7c;
+            }
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+                color: #38a7bb;
+            }
+            .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+            .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+            .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+                color: #38a7bb;
+                background-color: #67dbf0;
+            }
+        }
+
+    </style>
+
+</head>
+<body style="background-color: #f1f1f1">
+
+<div class="container-fluid" style="background: #f1f1f1;">
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <br>
+    <br>
+    <div class="container" style="background-color:white;    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+;
+           ">
+
+
+        <div class="container text-center"  style="width: 80%;align-self: center;">
+            <br>
+            <h3 style="color: #00a7d0"><b>Ajouter Un Sondage</b></h3>
+            <br>
+
+
+
+
+    {{ form_row(form.sujet) }}
+<br>
+            <br>
+            {{ form_row(form.Questions) }}
+
+<br>
+            <br>
+            <br>
+
+            <div class='col-md-5'>
+        <div class="form-group">
+         <label> Date Début </label>
+            <div class='input-group date' id='datetimepicker6'>
+            {{ form_row(form.dateemition) }}
+                <span class="input-group-addon">
+                    <span style="color: #38a7bb" class="fa fa-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class='col-md-5'>
+        <div class="form-group">
+
+            <label> Date Fin </label>
+            <div class='input-group date' id='datetimepicker7'>
+                {{ form_row(form.dateExpiration) }}                                <span class="input-group-addon">
+                    <span style="color: #38a7bb"  class="fa fa-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <br>
+        {{ form_end(form) }}
+        <script>
+    $( document ).ready(function () {
+        $('#add_sondage_dateemition').datetimepicker({
+                minDate: moment(new Date()).add(1, 'days'),
+                    format: 'YYYY-MM-DD hh:mm:ss'
+        }
+        );
+        $('#add_sondage_dateExpiration').datetimepicker({
+                minDate:moment(new Date()).add(3, 'hours').add(1,'days'),
+            format: 'YYYY-MM-DD hh:mm:ss'
+        });
+        $("#add_sondage_dateExpiration").on("dp.change", function (e) {
+            $('#add_event_dateevent').data("DateTimePicker").maxDate(e.date.subtract({hours: 3}));
+        });
+        $("#add_sondage_dateemition").on("dp.change", function (e) {
+                $('#add_event_dateend').data("DateTimePicker").minDate(e.date.add(3,'hours'));
+
+        });
+    });
+
+</script>
+</body>
+{% endblock %}

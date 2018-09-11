@@ -1,0 +1,66 @@
+{% extends "@EshopUser/membrelayoutss.html.twig" %}
+{% block profile %}
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}">
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    {% else %}
+        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+{% endblock profile %}
+{% block c %}
+    {% for p in produit %}
+    <div id="home-slider">
+        <div class="container">
+
+            <br>
+
+            <div class="row">
+
+                <div class="col-sm-3 slider-left"></div>
+
+                <div class="homeslider">
+
+                    <div class="box-border">
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <img class="img-responsive" alt="product" src="{{ asset('uploads/brochures/'~p.photo) }}" />
+                            </div>
+
+
+                            <div class="col-sm-6">
+
+
+                                <br>
+                                <b>Nom :</b>&nbsp;{{p.nom}} <label></label><br><br><br>
+                                <b>Descirption :</b> &nbsp; {{ p.description }} <label></label><br><br><br>
+                                <b>Etat :</b> &nbsp;{{ p.etat }}  <label></label><br><br><br>
+                                <b>Prix</b>&nbsp; {{ p.prix }} <label></label><br><br><br>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    {% endfor %}
+{% endblock %}
+
+

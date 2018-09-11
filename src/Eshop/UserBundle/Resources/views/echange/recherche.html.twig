@@ -1,0 +1,50 @@
+
+{% extends "@EshopUser/adminlayout.html.twig" %}
+
+{% block body %}
+    <h1 >Liste des echanges </h1>
+
+
+    <table border="2px">
+        <tr>
+            <td>Photo echange </td> <td textalign="center"> description </td> <td>prix</td><td>prix minimal</td> <td>date début</td><td>date fin</td><td>Etat</td><td>Propriétaire</td>
+            <td>Etat</td></tr>
+        {% for echange in produit  %}
+            <tr>
+                <td><img src="{{ asset('images/products/' ~ echange.imageName) }}" width="80" height="50" style="float:right"   alt="...">
+                </td><td>{{ echange.description }}</td><td>{{ echange.prix }}</td>
+                <td>{{ echange.prixMinimal }}</td>
+                <td class="cart_avail">
+                    {{ echange.datedeb|date('Y-m-d') }}
+                </td>
+                <td class="cart_description">
+                    {{ echange.datefin|date('Y-m-d') }}
+                </td>
+                <td>{{ echange.etat }}</td>
+                <td>{{ echange.id }}</td>
+                <td>{{ echange.idcat.nom }}</td>
+                </td>
+                <td><a href="{{ path('eshop_echange_suppression', { 'idch': echange.id }) }}">Supprimer</a></td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+    <form class="form-inline" method="post" action="{{ path('eshop_rech') }}">
+
+        <div class="form-group input-serach">
+            <input type="text"  placeholder="Keyword here..." name="name">
+        </div>
+        <button type="submit" class="pull-right btn-search"></button>
+    </form>
+
+
+    <div class="box-border" align="center">
+        <form action="{{ path('eshop_echange_stat') }}" >
+            <button class="button pull-center" type="submit">Générer des statistiques</button>
+        </form>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends('@EshopUser/membrelayoutss.html.twig') %}
+{% block c %}
+<div id="home-slider">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-sm-3 slider-left"></div>
+
+            <div class="homeslider">
+
+                <div class="box-border">
+
+                    <div class="row">
+
+<h2 align="center"> <U>Espace reclamation </U> </h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+    </style>
+    <style>
+        html, body {
+            padding:0;
+            margin:0;
+            height:100%
+        }
+        #cache {
+            position:absolute;
+            background:rgba(0,0,0,0);
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            z-index: -1;
+            transition:background .5s
+        }
+        #cache:target {
+            background:rgba(0,0,0,.5);
+            z-index: 1;
+        }
+        .popup {
+            position:absolute;
+            z-index: 1000;
+            display:none;
+            top:150px;
+            left:500px;
+            right:500px;
+        }
+        .popup a {
+            position:absolute;
+            background: #333;
+            color:#fff;
+            border-radius: 50%;
+            width:20px;
+            line-height: 20px;
+            text-align: center;
+            font-family:arial;
+            right:0;
+            text-decoration: none;
+
+        }
+        #cache:target ~ .popup {
+            display:block;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    {{ form(form) }}
+
+    {{ form_widget(form.motif) }}
+
+
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+
+    {% endfor %}
+
+
+    {{ form_errors(form) }}
+
+</div>
+</body>
+</html>
+    </div></div>
+            </div></div></div></div>
+{% endblock %}
